@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - LWG Logistics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2 class="logo">LWG Admin</h2>
+</header>
+
+<section class="form-section">
+    <h1>Update Shipment Status</h1>
+
+    <form id="adminForm">
+
+        <input type="text" id="trackingId" placeholder="Tracking ID (e.g LWG123456)" required>
+
+        <select id="status">
+            <option value="">Select Status</option>
+            <option>Pending</option>
+            <option>In Transit</option>
+            <option>Out for Delivery</option>
+            <option>Delivered</option>
+        </select>
+
+        <input type="text" id="location" placeholder="Current Location">
+
+        <button type="submit" class="btn">Update Shipment</button>
+
+    </form>
+
+</section>
+
+<script>
+document.getElementById("adminForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const id = document.getElementById("trackingId").value.trim();
+    const status = document.getElementById("status").value;
+    const location = document.getElementById("location").value;
+
+    if(!id){
+        alert("Enter tracking ID");
+        return;
+    }
+
+    try {
+        const res = await fetch(`https://lwg-backend.onrender.com/api/update/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ status, location })
+        });
+
+        const data = await res.json();
+
+        if(data.error){
+            alert("❌ " + data.error);
+        } else {
+            alert("✅ Shipment updated successfully!");
+        }
+
+    } catch(err){
+        alert("❌ Server error");
+    }
+});
+</script>
+
+</body>
+</html>
