@@ -12,7 +12,8 @@
 <!-- NAVBAR -->
 <header class="navbar">
     <h2 class="logo">LWG Logistics</h2>
-    <nav>
+
+    <nav id="navMenu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
@@ -20,10 +21,13 @@
         <a href="contact.html">Contact</a>
         <a href="booking.html" class="btn active">Book Now</a>
     </nav>
+
+    <!-- HAMBURGER -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </header>
 
 <!-- HERO -->
-<section class="hero booking-hero">
+<section class="hero booking-hero fade-in">
     <div class="hero-content">
         <h1>Book a Delivery</h1>
         <p>Fast, secure and reliable logistics at your fingertips</p>
@@ -31,11 +35,11 @@
 </section>
 
 <!-- BOOKING SECTION -->
-<section class="booking-section">
+<section class="booking-section fade-in">
 
     <div class="booking-container">
 
-        <!-- LEFT SIDE -->
+        <!-- LEFT -->
         <div class="booking-info">
             <h2>Why Book With Us?</h2>
             <p>We provide reliable and fast delivery services across Sierra Leone.</p>
@@ -48,7 +52,7 @@
             </ul>
         </div>
 
-        <!-- RIGHT SIDE FORM -->
+        <!-- RIGHT FORM -->
         <form id="bookingForm" class="booking-form">
 
             <h3>Sender Information</h3>
@@ -91,7 +95,7 @@
 </section>
 
 <!-- CTA -->
-<section class="cta">
+<section class="cta fade-in">
     <h2>Need Help?</h2>
     <p>Contact us anytime and we’ll assist you</p>
     <a href="contact.html" class="btn">Contact Us</a>
@@ -105,13 +109,8 @@
 <!-- WHATSAPP -->
 <a href="https://wa.me/23272146015" class="whatsapp">💬</a>
 
-<script>
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    alert("✅ Booking submitted successfully!");
-});
-</script>
-
+<!-- MAIN SCRIPT -->
 <script src="script.js"></script>
+
 </body>
 </html>
