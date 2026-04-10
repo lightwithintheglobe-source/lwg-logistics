@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Delivery - LWG Logistics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">LWG Logistics</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="tracking.html">Track</a>
+        <a href="contact.html">Contact</a>
+        <a href="booking.html" class="btn active">Book Now</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero booking-hero">
+    <div class="hero-content">
+        <h1>Book a Delivery</h1>
+        <p>Fast, secure and reliable logistics at your fingertips</p>
+    </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="booking-section">
+
+    <div class="booking-container">
+
+        <!-- LEFT SIDE -->
+        <div class="booking-info">
+            <h2>Why Book With Us?</h2>
+            <p>We provide reliable and fast delivery services across Sierra Leone.</p>
+
+            <ul>
+                <li>✔ Fast pickup & delivery</li>
+                <li>✔ Affordable pricing</li>
+                <li>✔ Trusted riders</li>
+                <li>✔ Real-time updates</li>
+            </ul>
+        </div>
+
+        <!-- RIGHT SIDE FORM -->
+        <form id="bookingForm" class="booking-form">
+
+            <h3>Sender Information</h3>
+            <input type="text" placeholder="Full Name" required>
+            <input type="tel" placeholder="Phone Number" required>
+
+            <h3>Pickup Details</h3>
+            <input type="text" placeholder="Pickup Location" required>
+            <input type="date" required>
+
+            <h3>Receiver Information</h3>
+            <input type="text" placeholder="Receiver Name" required>
+            <input type="tel" placeholder="Receiver Phone" required>
+
+            <h3>Delivery Details</h3>
+            <input type="text" placeholder="Drop-off Location" required>
+
+            <select required>
+                <option value="">Select Delivery Type</option>
+                <option>Same-Day</option>
+                <option>Next-Day</option>
+                <option>Express</option>
+            </select>
+
+            <select required>
+                <option value="">Payment Method</option>
+                <option>Orange Money</option>
+                <option>Africell Money</option>
+                <option>Cash on Delivery</option>
+            </select>
+
+            <textarea placeholder="Additional Notes"></textarea>
+
+            <button type="submit" class="btn">Submit Booking</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Need Help?</h2>
+    <p>Contact us anytime and we’ll assist you</p>
+    <a href="contact.html" class="btn">Contact Us</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 LWG Logistics</p>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/23272146015" class="whatsapp">💬</a>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("✅ Booking submitted successfully!");
+});
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

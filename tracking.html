@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Shipment - LWG Logistics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">LWG Logistics</h2>
+
+    <nav id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="tracking.html" class="active">Track</a>
+        <a href="contact.html">Contact</a>
+        <a href="booking.html" class="btn">Book Now</a>
+    </nav>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- HERO -->
+<section class="hero tracking-hero">
+    <div class="hero-content">
+        <h1>Track Your Shipment</h1>
+        <p>Enter your tracking ID to view delivery status</p>
+    </div>
+</section>
+
+<!-- TRACKING INPUT -->
+<section class="tracking-section">
+
+    <div class="tracking-container">
+        <input type="text" id="trackingInput" placeholder="Enter Tracking ID (e.g LWG123)">
+        <button onclick="trackPackage()">Track</button>
+    </div>
+
+</section>
+
+<!-- RESULT -->
+<section id="trackingResult" class="tracking-result">
+
+    <h2>Shipment Details</h2>
+
+    <div class="result-card">
+
+        <p><strong>Status:</strong> <span id="status"></span></p>
+        <p><strong>Current Location:</strong> <span id="location"></span></p>
+        <p><strong>Estimated Delivery:</strong> <span id="date"></span></p>
+
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+
+        <div class="step active">📦 Order Received</div>
+        <div class="step active">🚚 In Transit</div>
+        <div class="step">📍 Out for Delivery</div>
+        <div class="step">✅ Delivered</div>
+
+    </div>
+
+</section>
+
+<!-- ERROR -->
+<section id="errorBox" class="error-box">
+    <p>❌ Tracking ID not found</p>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Need a Delivery?</h2>
+    <p>Book your shipment now and track it in real-time</p>
+    <a href="booking.html" class="btn">Book Now</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 LWG Logistics</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("active");
+}
+
+function trackPackage() {
+    let id = document.getElementById("trackingInput").value.trim();
+    let result = document.getElementById("trackingResult");
+    let error = document.getElementById("errorBox");
+
+    result.style.display = "none";
+    error.style.display = "none";
+
+    if(id === "LWG123") {
+
+        document.getElementById("status").innerText = "In Transit 🚚";
+        document.getElementById("location").innerText = "Freetown";
+        document.getElementById("date").innerText = "Tomorrow";
+
+        result.style.display = "block";
+
+    } else {
+        error.style.display = "block";
+    }
+}
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

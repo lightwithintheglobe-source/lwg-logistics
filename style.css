@@ -1,0 +1,254 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* COLORS */
+:root {
+    --primary: #002147;
+    --secondary: gold;
+    --light: #f8f9fb;
+    --dark: #000;
+}
+
+/* BODY */
+body {
+    line-height: 1.6;
+    background: white;
+}
+
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: var(--primary);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.navbar nav a.active {
+    border-bottom: 2px solid var(--secondary);
+}
+
+/* BUTTON */
+.btn {
+    background: var(--secondary);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+/* SECTION */
+section {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* STEPS */
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.step {
+    max-width: 250px;
+}
+
+/* TRACKING */
+.tracking {
+    background: white;
+    padding: 40px;
+    margin-top: -60px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.tracking input {
+    padding: 12px;
+    width: 250px;
+}
+
+.tracking button {
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+/* CTA */
+.cta {
+    background: var(--primary);
+    color: white;
+}
+
+/* FOOTER */
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+/* CONTACT / BOOKING SHARED */
+.contact-box,
+.booking-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    margin: auto;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.contact-left,
+.booking-info {
+    flex: 1;
+    padding: 40px;
+    background: var(--primary);
+    color: white;
+}
+
+.contact-right,
+.booking-form {
+    flex: 2;
+    padding: 40px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .contact-box,
+    .booking-container {
+        flex-direction: column;
+    }
+
+    .tracking input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
+/* ANIMATIONS */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CARD HOVER */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* BUTTON HOVER */
+.btn {
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* NAV LINK HOVER */
+.navbar nav a:hover {
+    color: gold;
+}
+
+/* SMOOTH SCROLL */
+html {
+    scroll-behavior: smooth;
+}
