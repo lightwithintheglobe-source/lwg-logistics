@@ -26,7 +26,7 @@
 </header>
 
 <!-- HERO -->
-<section class="hero tracking-hero">
+<section class="hero tracking-hero fade-in">
     <div class="hero-content">
         <h1>Track Your Shipment</h1>
         <p>Enter your tracking ID to view delivery status</p>
@@ -34,7 +34,7 @@
 </section>
 
 <!-- TRACKING INPUT -->
-<section class="tracking-section">
+<section class="tracking-section fade-in">
 
     <div class="tracking-container">
         <input type="text" id="trackingInput" placeholder="Enter Tracking ID (e.g LWG123)">
@@ -44,37 +44,33 @@
 </section>
 
 <!-- RESULT -->
-<section id="trackingResult" class="tracking-result">
+<section id="trackingResult" class="tracking-result fade-in">
 
     <h2>Shipment Details</h2>
 
     <div class="result-card">
-
         <p><strong>Status:</strong> <span id="status"></span></p>
         <p><strong>Current Location:</strong> <span id="location"></span></p>
         <p><strong>Estimated Delivery:</strong> <span id="date"></span></p>
-
     </div>
 
     <!-- TIMELINE -->
     <div class="timeline">
-
         <div class="step active">📦 Order Received</div>
         <div class="step active">🚚 In Transit</div>
         <div class="step">📍 Out for Delivery</div>
         <div class="step">✅ Delivered</div>
-
     </div>
 
 </section>
 
 <!-- ERROR -->
-<section id="errorBox" class="error-box">
+<section id="errorBox" class="error-box fade-in">
     <p>❌ Tracking ID not found</p>
 </section>
 
 <!-- CTA -->
-<section class="cta">
+<section class="cta fade-in">
     <h2>Need a Delivery?</h2>
     <p>Book your shipment now and track it in real-time</p>
     <a href="booking.html" class="btn">Book Now</a>
@@ -85,33 +81,11 @@
     <p>© 2026 LWG Logistics</p>
 </footer>
 
-<script>
-function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("active");
-}
+<!-- WHATSAPP -->
+<a href="https://wa.me/23272146015" class="whatsapp">💬</a>
 
-function trackPackage() {
-    let id = document.getElementById("trackingInput").value.trim();
-    let result = document.getElementById("trackingResult");
-    let error = document.getElementById("errorBox");
-
-    result.style.display = "none";
-    error.style.display = "none";
-
-    if(id === "LWG123") {
-
-        document.getElementById("status").innerText = "In Transit 🚚";
-        document.getElementById("location").innerText = "Freetown";
-        document.getElementById("date").innerText = "Tomorrow";
-
-        result.style.display = "block";
-
-    } else {
-        error.style.display = "block";
-    }
-}
-</script>
-
+<!-- MAIN SCRIPT -->
 <script src="script.js"></script>
+
 </body>
 </html>
