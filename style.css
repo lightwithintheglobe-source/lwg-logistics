@@ -1,3 +1,4 @@
+
 /* RESET */
 * {
     margin: 0;
@@ -38,6 +39,10 @@ body {
     font-weight: bold;
 }
 
+.navbar nav {
+    display: flex;
+}
+
 .navbar nav a {
     color: white;
     margin-left: 20px;
@@ -48,6 +53,14 @@ body {
     border-bottom: 2px solid var(--secondary);
 }
 
+/* HAMBURGER */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+}
+
 /* BUTTON */
 .btn {
     background: var(--secondary);
@@ -56,6 +69,12 @@ body {
     color: black;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
 }
 
 /* HERO */
@@ -94,6 +113,12 @@ section {
     border-radius: 10px;
     width: 250px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* STEPS */
@@ -104,16 +129,16 @@ section {
     flex-wrap: wrap;
 }
 
-.step {
-    max-width: 250px;
-}
-
 /* TRACKING */
 .tracking {
     background: white;
     padding: 40px;
     margin-top: -60px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.tracking-box {
+    margin-top: 15px;
 }
 
 .tracking input {
@@ -153,7 +178,7 @@ footer {
     border-radius: 50%;
 }
 
-/* CONTACT / BOOKING SHARED */
+/* CONTACT / BOOKING */
 .contact-box,
 .booking-container {
     display: flex;
@@ -188,11 +213,48 @@ input, textarea, select {
     border-radius: 5px;
 }
 
+/* ANIMATIONS */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* NAV HOVER */
+.navbar nav a:hover {
+    color: gold;
+}
+
+/* SMOOTH SCROLL */
+html {
+    scroll-behavior: smooth;
+}
+
 /* MOBILE */
 @media(max-width: 768px) {
 
+    .menu-toggle {
+        display: block;
+    }
+
     .navbar nav {
         display: none;
+        flex-direction: column;
+        background: var(--primary);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+    }
+
+    .navbar nav.active {
+        display: flex;
     }
 
     .hero h1 {
@@ -208,47 +270,4 @@ input, textarea, select {
         width: 100%;
         margin-bottom: 10px;
     }
-}
-
-
-/* ANIMATIONS */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
-
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* CARD HOVER */
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* BUTTON HOVER */
-.btn {
-    transition: 0.3s ease;
-}
-
-.btn:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-
-/* NAV LINK HOVER */
-.navbar nav a:hover {
-    color: gold;
-}
-
-/* SMOOTH SCROLL */
-html {
-    scroll-behavior: smooth;
 }
