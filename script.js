@@ -7,7 +7,6 @@ if (bookingForm) {
     bookingForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Get values
         const inputs = bookingForm.querySelectorAll("input, select, textarea");
         let isValid = true;
 
@@ -25,10 +24,7 @@ if (bookingForm) {
             return;
         }
 
-        // Success message
         alert("✅ Booking Submitted Successfully!");
-
-        // Reset form
         bookingForm.reset();
     });
 }
@@ -62,15 +58,40 @@ function trackPackage() {
     if (result) result.style.display = "none";
     if (error) error.style.display = "none";
 
-    if (id === "LWG123") {
-        document.getElementById("status").innerText = "In Transit 🚚";
-        document.getElementById("location").innerText = "Freetown";
-        document.getElementById("date").innerText = "Tomorrow";
-
-        if (result) result.style.display = "block";
-    } else {
-        if (error) error.style.display = "block";
+    if (!id) {
+        alert("⚠️ Please enter a tracking ID");
+        return;
     }
+
+    // Simulate loading
+    if (result) {
+        result.style.display = "block";
+        result.innerHTML = "<p>🔄 Checking shipment...</p>";
+    }
+
+    setTimeout(() => {
+        if (id === "LWG123") {
+            document.getElementById("status").innerText = "In Transit 🚚";
+            document.getElementById("location").innerText = "Freetown";
+            document.getElementById("date").innerText = "Tomorrow";
+
+            result.style.display = "block";
+        } else {
+            if (result) result.style.display = "none";
+            if (error) error.style.display = "block";
+        }
+    }, 800);
+}
+
+// Enable ENTER key for tracking
+const trackingInput = document.getElementById("trackingInput");
+if (trackingInput) {
+    trackingInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            trackPackage();
+        }
+    });
 }
 
 // ==========================
@@ -78,7 +99,7 @@ function trackPackage() {
 // ==========================
 const fadeElements = document.querySelectorAll(".fade-in");
 
-window.addEventListener("scroll", () => {
+function handleScrollAnimation() {
     fadeElements.forEach(el => {
         const position = el.getBoundingClientRect().top;
         const screenHeight = window.innerHeight;
@@ -87,7 +108,11 @@ window.addEventListener("scroll", () => {
             el.classList.add("show");
         }
     });
-});
+}
+
+// Run on load + scroll
+window.addEventListener("scroll", handleScrollAnimation);
+window.addEventListener("load", handleScrollAnimation);
 
 // ==========================
 // 📱 MOBILE NAV TOGGLE
