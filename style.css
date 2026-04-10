@@ -271,3 +271,14 @@ html {
         margin-bottom: 10px;
     }
 }
+
+.timeline .step {
+    opacity: 0.4;
+    transition: 0.3s;
+}
+
+.timeline .step.active {
+    opacity: 1;
+    font-weight: bold;
+    color: green;
+}
