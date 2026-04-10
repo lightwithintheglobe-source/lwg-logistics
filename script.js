@@ -62,7 +62,7 @@ if (contactForm) {
 }
 
 // ==========================
-// 📍 TRACKING SYSTEM (REAL API)
+// 📍 TRACKING SYSTEM (REAL API + DYNAMIC STATUS)
 // ==========================
 async function trackPackage() {
     const input = document.getElementById("trackingInput");
@@ -88,9 +88,36 @@ async function trackPackage() {
         if (data.error) {
             error.style.display = "block";
         } else {
-            document.getElementById("status").innerText = data.data.status;
-            document.getElementById("location").innerText = data.data.location;
+            const order = data.data;
+            const status = order.status;
+
+            // Update details
+            document.getElementById("status").innerText = status;
+            document.getElementById("location").innerText = order.location;
             document.getElementById("date").innerText = "Processing";
+
+            // ==========================
+            // 🔥 DYNAMIC TIMELINE
+            // ==========================
+            const steps = document.querySelectorAll(".timeline .step");
+
+            steps.forEach(step => step.classList.remove("active"));
+
+            if (status === "Pending") {
+                steps[0]?.classList.add("active");
+            }
+            else if (status === "In Transit") {
+                steps[0]?.classList.add("active");
+                steps[1]?.classList.add("active");
+            }
+            else if (status === "Out for Delivery") {
+                steps[0]?.classList.add("active");
+                steps[1]?.classList.add("active");
+                steps[2]?.classList.add("active");
+            }
+            else if (status === "Delivered") {
+                steps.forEach(step => step.classList.add("active"));
+            }
 
             result.style.display = "block";
         }
