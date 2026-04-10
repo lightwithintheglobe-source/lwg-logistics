@@ -1,13 +1,14 @@
 // ==========================
-// 📦 BOOKING FORM
+// 📦 BOOKING FORM (REAL API)
 // ==========================
 const bookingForm = document.getElementById("bookingForm");
 
 if (bookingForm) {
-    bookingForm.addEventListener("submit", function (e) {
+    bookingForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const inputs = bookingForm.querySelectorAll("input, select, textarea");
+        let data = {};
         let isValid = true;
 
         inputs.forEach(input => {
@@ -16,6 +17,7 @@ if (bookingForm) {
                 input.style.border = "1px solid red";
             } else {
                 input.style.border = "1px solid #ddd";
+                data[input.placeholder || input.name] = input.value;
             }
         });
 
@@ -24,8 +26,24 @@ if (bookingForm) {
             return;
         }
 
-        alert("✅ Booking Submitted Successfully!");
-        bookingForm.reset();
+        try {
+            const res = await fetch("https://lwg-backend.onrender.com/api/book", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await res.json();
+
+            alert("✅ Booking successful!\nTracking ID: " + result.trackingId);
+
+            bookingForm.reset();
+
+        } catch (err) {
+            alert("❌ Failed to connect to server");
+        }
     });
 }
 
@@ -44,9 +62,9 @@ if (contactForm) {
 }
 
 // ==========================
-// 📍 TRACKING SYSTEM
+// 📍 TRACKING SYSTEM (REAL API)
 // ==========================
-function trackPackage() {
+async function trackPackage() {
     const input = document.getElementById("trackingInput");
     const result = document.getElementById("trackingResult");
     const error = document.getElementById("errorBox");
@@ -55,35 +73,36 @@ function trackPackage() {
 
     const id = input.value.trim();
 
-    if (result) result.style.display = "none";
-    if (error) error.style.display = "none";
-
     if (!id) {
         alert("⚠️ Please enter a tracking ID");
         return;
     }
 
-    // Simulate loading
-    if (result) {
-        result.style.display = "block";
-        result.innerHTML = "<p>🔄 Checking shipment...</p>";
-    }
+    result.style.display = "none";
+    error.style.display = "none";
 
-    setTimeout(() => {
-        if (id === "LWG123") {
-            document.getElementById("status").innerText = "In Transit 🚚";
-            document.getElementById("location").innerText = "Freetown";
-            document.getElementById("date").innerText = "Tomorrow";
+    try {
+        const res = await fetch(`https://lwg-backend.onrender.com/api/track/${id}`);
+        const data = await res.json();
+
+        if (data.error) {
+            error.style.display = "block";
+        } else {
+            document.getElementById("status").innerText = data.data.status;
+            document.getElementById("location").innerText = data.data.location;
+            document.getElementById("date").innerText = "Processing";
 
             result.style.display = "block";
-        } else {
-            if (result) result.style.display = "none";
-            if (error) error.style.display = "block";
         }
-    }, 800);
+
+    } catch (err) {
+        alert("❌ Server error");
+    }
 }
 
-// Enable ENTER key for tracking
+// ==========================
+// ⌨️ ENTER KEY SUPPORT
+// ==========================
 const trackingInput = document.getElementById("trackingInput");
 if (trackingInput) {
     trackingInput.addEventListener("keypress", function (e) {
@@ -110,7 +129,6 @@ function handleScrollAnimation() {
     });
 }
 
-// Run on load + scroll
 window.addEventListener("scroll", handleScrollAnimation);
 window.addEventListener("load", handleScrollAnimation);
 
